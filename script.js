@@ -20,6 +20,7 @@ const output = document.querySelector(".output")
 let num1 = undefined;
 let num2 = undefined;
 let operatorPressed = false;
+let currOperator = "";
 
 function clicker(num) {
     let curr = "numOne"
@@ -45,7 +46,7 @@ button.addEventListener("click", (e) => {
     console.log(e.target.id);
     switch (e.target.id) {
         case "zero":
-            output.textContent = 0;
+            (clicker(0)) ? output.textContent = num1 : output.textContent = num2;
             break;
         case "one":
             (clicker(1)) ? output.textContent = num1 : output.textContent = num2;
@@ -74,5 +75,29 @@ button.addEventListener("click", (e) => {
         case "nine":
             (clicker(9)) ? output.textContent = num1 : output.textContent = num2;
             break;
+        case "divide":
+            operatorPressed = true;
+            currOperator = "divide";
+            break;
+        case "multiply":
+            operatorPressed = true;
+            currOperator = "multiply";
+            break;
+        case "subtract":
+            operatorPressed = true;
+            currOperator = "subtract";
+            break;
+        case "add":
+            operatorPressed = true;
+            currOperator = "add";
+            break;
+        case "equals":
+            operatorPressed = false;
+            if (currOperator === "add") output.textContent = add(num1, num2);
+            else if (currOperator === "subtract") output.textContent = subtract(num1, num2);
+            else if (currOperator === "multiply") output.textContent = multiply(num1, num2);
+            else if (currOperator === "divide") output.textContent = divide(num1, num2);
+            break;
+
     }
 });
