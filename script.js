@@ -17,6 +17,30 @@ function divide(num1, num2) {
 const button = document.querySelector(".buttonContainer");
 const output = document.querySelector(".output")
 
+let num1 = undefined;
+let num2 = undefined;
+let operatorPressed = false;
+
+function clicker(num) {
+    let curr = "numOne"
+    if (num1 === undefined && !operatorPressed) num1 = num;
+    else if (num1 !== undefined && !operatorPressed) {
+        num1 *= 10;
+        num1 += num;
+    }
+    else if (operatorPressed && num2 === undefined) {
+        num2 = num;
+        curr = "numTwo";
+    }
+    else if (operatorPressed && num2 !== undefined) {
+        num2 *= 10;
+        num2 += num;
+        curr = "numTwo";
+    }
+    return (curr === "numOne") ? true : false;
+
+}
+
 button.addEventListener("click", (e) => {
     console.log(e.target.id);
     switch (e.target.id) {
@@ -24,30 +48,31 @@ button.addEventListener("click", (e) => {
             output.textContent = 0;
             break;
         case "one":
-            output.textContent = 1;
+            (clicker(1)) ? output.textContent = num1 : output.textContent = num2;
             break;
         case "two":
-            output.textContent = 2;
+            (clicker(2)) ? output.textContent = num1 : output.textContent = num2;
             break;
         case "three":
-            output.textContent = 3;
+            (clicker(3)) ? output.textContent = num1 : output.textContent = num2;
             break;
         case "four":
-            output.textContent = 4;
+            (clicker(4)) ? output.textContent = num1 : output.textContent = num2;
             break;
         case "five":
-            output.textContent = 5;
+            (clicker(5)) ? output.textContent = num1 : output.textContent = num2;
             break;
         case "six":
-            output.textContent = 6;
+            (clicker(6)) ? output.textContent = num1 : output.textContent = num2;
             break;
         case "seven":
-            output.textContent = 7;
+            (clicker(7)) ? output.textContent = num1 : output.textContent = num2;
             break;
         case "eight":
-            output.textContent = 8;
+            (clicker(8)) ? output.textContent = num1 : output.textContent = num2;
             break;
         case "nine":
-            output.textContent = 9;
+            (clicker(9)) ? output.textContent = num1 : output.textContent = num2;
+            break;
     }
 });
