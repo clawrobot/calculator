@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+#title {
+    font-size: 75px;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(197, 152, 233);
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    width: 800px;
+    height: 1200px;
+    background-color: rgb(175, 175, 175);
+    border: 6px solid black;
+    border-radius: 20px;
+}
