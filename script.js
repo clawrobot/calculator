@@ -42,6 +42,32 @@ function clicker(num) {
 
 }
 
+function evaluateFromString(operatorString, num1, num2) {
+    switch (operatorString) {
+        case "add":
+            let ans1 = add(num1, num2);
+            num1 = ans1;
+            num2 = undefined;
+            return ans1;
+            break;
+        case "multiply":
+            let ans2 = multiply(num1, num2);
+            num1 = ans2;
+            num2 = undefined;
+            return ans2;
+        case "subtract":
+            let ans3 = subtract(num1, num2);
+            num1 = ans3;
+            num2 = undefined;
+            return ans3;
+        case "divide":
+            let ans4 = divide(num1, num2);
+            num1 = ans4;
+            num2 = undefined;
+            return ans4;
+    }
+}
+
 button.addEventListener("click", (e) => {
     console.log(e.target.id);
     switch (e.target.id) {
@@ -76,28 +102,88 @@ button.addEventListener("click", (e) => {
             (clicker(9)) ? output.textContent = num1 : output.textContent = num2;
             break;
         case "divide":
-            operatorPressed = true;
-            currOperator = "divide";
+            if (!operatorPressed && num1 !== undefined) {
+                operatorPressed = true
+            }
+            else if (operatorPressed && num1 !== undefined && num2 !== undefined) {
+                let temp = evaluateFromString(currOperator, num1, num2);
+                num1 = temp
+                output.textContent = temp;
+                num2 = undefined;
+                currOperator = "divide";
+            }
+            if (num1 !== undefined) currOperator = "divide";
             break;
         case "multiply":
-            operatorPressed = true;
-            currOperator = "multiply";
+            if (!operatorPressed && num1 !== undefined) {
+                operatorPressed = true
+            }
+            else if (operatorPressed && num1 !== undefined && num2 !== undefined) {
+                let temp = evaluateFromString(currOperator, num1, num2);
+                num1 = temp
+                output.textContent = temp;
+                num2 = undefined;
+            }
+            if (num1 !== undefined) currOperator = "multiply";
             break;
         case "subtract":
-            operatorPressed = true;
-            currOperator = "subtract";
+            if (!operatorPressed && num1 !== undefined) {
+                operatorPressed = true
+            }
+            else if (operatorPressed && num1 !== undefined && num2 !== undefined) {
+                let temp = evaluateFromString(currOperator, num1, num2);
+                num1 = temp
+                output.textContent = temp;
+                num2 = undefined;
+            }
+            if (num1 !== undefined) currOperator = "subtract";
             break;
         case "add":
-            operatorPressed = true;
-            currOperator = "add";
+            if (!operatorPressed && num1 !== undefined) {
+                operatorPressed = true
+            }
+            else if (operatorPressed && num1 !== undefined && num2 !== undefined) {
+                let temp = evaluateFromString(currOperator, num1, num2);
+                num1 = temp
+                output.textContent = temp;
+                num2 = undefined;
+            }
+            if (num1 !== undefined) currOperator = "add";
             break;
         case "equals":
-            operatorPressed = false;
-            if (currOperator === "add") output.textContent = add(num1, num2);
-            else if (currOperator === "subtract") output.textContent = subtract(num1, num2);
-            else if (currOperator === "multiply") output.textContent = multiply(num1, num2);
-            else if (currOperator === "divide") output.textContent = divide(num1, num2);
+            if (num1 !== undefined) operatorPressed = false;
+            if (currOperator === "add") {
+                let ans = add(num1, num2);
+                output.textContent = ans;
+                num1 = ans;
+                num2 = undefined;
+            }
+            else if (currOperator === "multiply") {
+                let ans = multiply(num1, num2);
+                output.textContent = ans;
+                num1 = ans;
+                num2 = undefined;
+            }
+            else if (currOperator === "divide") {
+                let ans = divide(num1, num2);
+                ans = Math.round(ans * 1000) / 1000;
+                output.textContent = ans;
+                num1 = ans;
+                num2 = undefined;
+            }
+            else if (currOperator === "subtract") {
+                let ans = subtract(num1, num2);
+                output.textContent = ans;
+                num1 = ans;
+                num2 = undefined;
+            }
             break;
+        case "clear":
+            output.textContent = 0;
+            num1 = undefined;
+            num2 = undefined;
+            operatorPressed = false;
+            currOperator = "";
 
     }
 });
